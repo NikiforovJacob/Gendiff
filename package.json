@@ -1,0 +1,32 @@
+{
+  "name": "prj2_difference-calculator",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/index.js",
+  "bin": {
+    "hexlet": "dist/bin/hexlet.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NikiforovJacob/project-lvl2-s413.git"
+  },
+  "keywords": [
+    "config",
+    "difference"
+  ],
+  "author": "Nikiforov_Jacob",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NikiforovJacob/project-lvl2-s413/issues"
+  },
+  "homepage": "https://github.com/NikiforovJacob/project-lvl2-s413#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1"
+  }
+}
