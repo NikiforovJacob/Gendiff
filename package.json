@@ -1,6 +1,6 @@
 {
-  "name": "prj2_difference-calculator",
-  "version": "0.0.1",
+  "name": "diff-calc-888",
+  "version": "0.0.3",
   "description": "",
   "main": "dist/index.js",
   "bin": {

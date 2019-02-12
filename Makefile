@@ -6,3 +6,5 @@ publish:
 	npm publish
 lint:
 	npx eslint ./
+babel:
+	npx babel src --out-dir dist
