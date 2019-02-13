@@ -1,7 +1,8 @@
-// eslint-disable-next-line import/no-named-as-default
-// eslint-disable-next-line import/no-named-as-default-member
-import sum from '../src/bin/gendiff';
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable no-undef */
+import { jsonBefore, jsonAfter } from '../src/utils';
+import gendiff from '../src/bin/gendiff';
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
+test('Compares two JSON', () => {
+  expect(gendiff(jsonBefore, jsonAfter)).toBe('{+ timeout: 20- timeout: 50+ verbose: true  host: hexlet.io- proxy: 123.234.53.22- follow: false}');
 });

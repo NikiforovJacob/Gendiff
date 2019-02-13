@@ -9,4 +9,4 @@ lint:
 babel:
 	npx babel src --out-dir dist
 test:
-	npm run test
+	npm test
