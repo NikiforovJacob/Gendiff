@@ -8,3 +8,5 @@ lint:
 	npx eslint ./
 babel:
 	npx babel src --out-dir dist
+test:
+	npm run test

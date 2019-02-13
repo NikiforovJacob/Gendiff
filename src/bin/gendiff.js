@@ -8,3 +8,7 @@ program
   .arguments('<firstConfig> <secondConfig>');
 
 program.parse(process.argv);
+
+export default (a, b) => {
+  return a + b;
+};
