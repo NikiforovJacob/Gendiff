@@ -3,8 +3,8 @@
 import jsonParse from '../src/utils';
 import gendiff from '../src';
 
-const fileBefore = '/home/jacob/Documents/my-dir/Hexlet/Projects/Prj2_Difference-Calculator/__tests__/__fixtures__/before.json';
-const fileAfter = '/home/jacob/Documents/my-dir/Hexlet/Projects/Prj2_Difference-Calculator/__tests__/__fixtures__/after.json';
+const fileBefore = './__tests__/__fixtures__/before.json';
+const fileAfter = './__tests__/__fixtures__/after.json';
 
 const jsonBefore = jsonParse(fileBefore);
 const jsonAfter = jsonParse(fileAfter);
