@@ -1,3 +1,4 @@
+import test, { expect } from 'jest';
 import readFile from '../src/utils';
 import gendiff from '../src';
 
