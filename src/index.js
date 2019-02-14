@@ -1,12 +1,12 @@
 import _ from 'lodash';
-import { jsonParse } from './utils';
+import parse from './parsers';
 
 const newLine = '\n';
 
 const gendiff = (pathToFileBefore, pathToFileAfter) => {
-  const contentBefore = jsonParse(pathToFileBefore);
-  const contentAfter = jsonParse(pathToFileAfter);
-  const reducer1 = (acc, currentKey) => {
+  const contentBefore = parse(pathToFileBefore);
+  const contentAfter = parse(pathToFileAfter);
+  const reduceAfterToBefore = (acc, currentKey) => {
     if (!_.has(contentBefore, currentKey)) {
       return `${acc}  + ${currentKey}: ${contentAfter[currentKey]}${newLine}`;
     }
@@ -15,17 +15,17 @@ const gendiff = (pathToFileBefore, pathToFileAfter) => {
     }
     return `${acc}  + ${currentKey}: ${contentAfter[currentKey]}${newLine}  - ${currentKey}: ${contentBefore[currentKey]}${newLine}`;
   };
-  const gen = Object.keys(contentAfter).reduce(reducer1, '');
+  const genAfterToBefore = Object.keys(contentAfter).reduce(reduceAfterToBefore, '');
 
-  const reducer2 = (acc, currentKey) => {
+  const reduceBeforeToAfter = (acc, currentKey) => {
     if (!_.has(contentAfter, currentKey)) {
       return `${acc}  - ${currentKey}: ${contentBefore[currentKey]}${newLine}`;
     }
     return acc;
   };
 
-  const gen2 = Object.keys(contentBefore).reduce(reducer2, gen);
-  return `{${newLine}${gen2.slice(0, -1)}${newLine}}`;
+  const genBeforeToAfter = Object.keys(contentBefore).reduce(reduceBeforeToAfter, genAfterToBefore);
+  return `{${newLine}${genBeforeToAfter.slice(0, -1)}${newLine}}`;
 };
 
 export default gendiff;

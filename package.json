@@ -1,6 +1,6 @@
 {
   "name": "diff-calc-888",
-  "version": "0.1.9",
+  "version": "0.2.2",
   "description": "",
   "main": "dist/index.js",
   "bin": {
@@ -41,6 +41,7 @@
   },
   "dependencies": {
     "commander": "^2.19.0",
+    "js-yaml": "^3.12.1",
     "lodash": "^4.17.11"
   }
 }
