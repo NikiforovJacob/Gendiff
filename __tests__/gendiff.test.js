@@ -15,9 +15,9 @@ test('Compares two YAML', () => {
   expect(gendiff(pathToFile1, pathToFile2)).toMatch(contentCheck);
 });
 
-test('Compares YAML to JSON', () => {
-  const pathToFile1 = '__tests__/__fixtures__/before.yml';
-  const pathToFile2 = '__tests__/__fixtures__/after.json';
+test('Compares two ini', () => {
+  const pathToFile1 = '__tests__/__fixtures__/before.ini';
+  const pathToFile2 = '__tests__/__fixtures__/after.ini';
   const contentCheck = readFile('__tests__/__fixtures__/check.txt');
   expect(gendiff(pathToFile1, pathToFile2)).toMatch(contentCheck);
 });
