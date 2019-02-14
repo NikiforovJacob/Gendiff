@@ -5,7 +5,3 @@ extends:
 rules:
   no-console: 0
   import/no-named-as-default: 0
-settings: 
-    import/resolver: 
-      node: 
-        paths: ["__tests__"]
