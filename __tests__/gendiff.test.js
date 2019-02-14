@@ -1,4 +1,4 @@
-import test, { expect } from 'jest';
+import test from 'jest';
 import readFile from '../src/utils';
 import gendiff from '../src';
 
