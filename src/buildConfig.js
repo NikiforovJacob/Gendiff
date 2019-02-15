@@ -24,9 +24,7 @@ const fileExtionActions = [
 
 const buildConfig = (pathToFile) => {
   const contentFile = readFile(pathToFile);
-  const ff =fileExtionActions.find(({ check }) => check(pathToFile)).build(contentFile);
-  console.log(ff);
-  return ff;
+  return fileExtionActions.find(({ check }) => check(pathToFile)).build(contentFile);
 };
 
 export default buildConfig;
