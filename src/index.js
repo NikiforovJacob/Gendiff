@@ -1,12 +1,11 @@
 import _ from 'lodash';
-import buildConfig from './buildConfig';
 import parse from './parsers';
 
 const newLine = '\n';
 
 const gendiff = (pathToFileBefore, pathToFileAfter) => {
-  const contentBefore = parse(buildConfig(pathToFileBefore));
-  const contentAfter = parse(buildConfig(pathToFileAfter));
+  const contentBefore = parse(pathToFileBefore);
+  const contentAfter = parse(pathToFileAfter);
   const reduceAfterToBefore = (acc, currentKey) => {
     if (!_.has(contentBefore, currentKey)) {
       return `${acc}  + ${currentKey}: ${contentAfter[currentKey]}${newLine}`;

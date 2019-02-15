@@ -1,5 +1,7 @@
-import readFile from '../src/utils';
+import fs from 'fs';
 import gendiff from '../src';
+
+const readFile = pathFile => fs.readFileSync(pathFile, { encoding: 'utf-8' });
 
 test('Compares two JSON', () => {
   const pathToFile1 = '__tests__/__fixtures__/before.json';
