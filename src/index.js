@@ -9,16 +9,18 @@ const gendiff = (pathToFileBefore, pathToFileAfter) => {
 
   const unionContentKeys = Array.from(new Set(Object.keys(contentAfter).concat(Object.keys(contentBefore))));
   const compare = (currentKey) => {
+    const stringKeyValueAfter = `${currentKey}: ${contentAfter[currentKey]}`;
+    const stringKeyValueBefore = `${currentKey}: ${contentBefore[currentKey]}`;
     if (!_.has(contentBefore, currentKey)) {
-      return `  + ${currentKey}: ${contentAfter[currentKey]}${newLine}`;
+      return `  + ${stringKeyValueAfter}${newLine}`;
     }
     if (contentBefore[currentKey] === contentAfter[currentKey]) {
-      return `    ${currentKey}: ${contentAfter[currentKey]}${newLine}`;
+      return `    ${stringKeyValueAfter}${newLine}`;
     }
     if (_.has(contentAfter, currentKey) && contentBefore[currentKey] !== contentAfter[currentKey]) {
-      return `  + ${currentKey}: ${contentAfter[currentKey]}${newLine}  - ${currentKey}: ${contentBefore[currentKey]}${newLine}`;
+      return `  + ${stringKeyValueAfter}${newLine}  - ${stringKeyValueBefore}${newLine}`;
     }
-    return `  - ${currentKey}: ${contentBefore[currentKey]}${newLine}`;
+    return `  - ${stringKeyValueBefore}${newLine}`;
   };
   const gen = unionContentKeys.map(compare);
   return `{${newLine}${gen.join('').slice(0, -1)}${newLine}}`;
