@@ -1,20 +1,11 @@
-import path from 'path';
 import yaml from 'js-yaml';
 import ini from 'ini';
-import readFile from './utils';
 
 const fileExtionActions =
   {
-    '.json': pathFile => JSON.parse(readFile(pathFile)),
-    '.yml': pathFile => yaml.safeLoad(readFile(pathFile)),
-    '.ini': pathFile => ini.parse(readFile(pathFile)),
+    '.json': JSON.parse,
+    '.yml': yaml.safeLoad,
+    '.ini': ini.parse,
   };
 
-const getExtensionName = pathFile => path.extname(pathFile);
-
-const parse = (pathToFile) => {
-  const extensionName = getExtensionName(pathToFile);
-  return fileExtionActions[extensionName](pathToFile);
-};
-
-export default parse;
+export default (fileContent, ext) => fileExtionActions[ext](fileContent);
