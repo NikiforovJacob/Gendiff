@@ -1,9 +1,10 @@
 import _ from 'lodash';
 import parse from './parsers';
-import readFile from './utils';
+import fs from 'fs';
 import path from 'path';
 
 const newLine = '\n';
+const readFile = pathFile => fs.readFileSync(pathFile, { encoding: 'utf-8' });
 
 const gendiff = (pathToFileBefore, pathToFileAfter) => {
 
@@ -16,8 +17,8 @@ const gendiff = (pathToFileBefore, pathToFileAfter) => {
 
   const allKeys = _.union(Object.keys(after), Object.keys(before));
   const compareGen = (currentKey) => {
-    const stringKeyValueAfter = `${currentKey}: ${after[currentKey]}`;
     const stringKeyValueBefore = `${currentKey}: ${before[currentKey]}`;
+    const stringKeyValueAfter = `${currentKey}: ${after[currentKey]}`;
     if (!_.has(before, currentKey)) {
       return `  + ${stringKeyValueAfter}${newLine}`;
     }
