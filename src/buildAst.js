@@ -1,60 +1,48 @@
 import _ from 'lodash';
 
 const buildAst = (before, after) => {
-  const allKeys = _.union(Object.keys(after), Object.keys(before));
-  const iterAst = (acc, currentKey) => {
-    const emptyNode = {name: currentKey, type: '', value: '', compareMark: ' ', children: []};
-    const valueBefore = before[currentKey];
-    const valueAfter = after[currentKey];
+  const allKeys = _.union(Object.keys(before), Object.keys(after));
+  const iterAst = (key) => {
+    const emptyNode = {name: key, type: '', valueBefore: '', valueAfter: '',  children: []};
+    if (_.isObject(before[key]) && _.isObject(after[key])) {
+      return {...emptyNode, type: 'nesting', children: buildAst(before[key], after[key])};
+    };
 
-    if (!_.has(before, currentKey) && _.has(after, currentKey)) {
-      if (_.isObject(valueBefore)) {
-        return [...acc, {...emptyNode, type: 'sympleNode', value: valueBefore, compareMark: '+'}];
+    const typesActions = [
+      {
+        type: 'added',
+        check: (b, a) => !_.has(b, key) && _.has(a, key),
+        build:  {...emptyNode, type: 'added', valueAfter: after[key]}
+      },
+      {
+        type: 'deleted',
+        check: (b, a) => _.has(b, key) && !_.has(a, key),
+        build:  {...emptyNode, type: 'deleted', valueBefore: before[key]}
+      },
+      // 
+      // Не понимаю почему не работает
+      // 
+      // {
+      //   type: 'nesting',
+      //   check: (b, a) => _.isObject(b[key]) && _.isObject(a[key]),
+      //   build:  {...emptyNode, type: 'nesting', children: buildAst(before[key], after[key])},
+      // },
+      {
+        type: 'unchanged',
+        check: (b, a) => b[key] === a[key],
+        build:  {...emptyNode, type: 'unchanged', valueBefore: before[key]}
+      },
+      {
+        type: 'changed',
+        check: (b, a) => b[key] !== a[key],
+        build:  {...emptyNode, type: 'changed', valueBefore: before[key], valueAfter: after[key]}
       }
-      if (_.isObject(valueAfter)) {
-        return [...acc, {...emptyNode, type: 'sympleNode', value: valueAfter, compareMark: '+'}];
-      }
-      return [...acc, {...emptyNode, type: 'leafNode', value: valueAfter, compareMark: '+'}];
-    }
+    ];
 
-    if (_.has(before, currentKey) && !_.has(after, currentKey)) {
-      if (_.isObject(valueBefore)) {
-        return [...acc, {...emptyNode, type: 'sympleNode', value: valueBefore, compareMark: '-'}];
-      }
-      if (_.isObject(valueAfter)) {
-        return [...acc, {...emptyNode, type: 'sympleNode', value: valueAfter, compareMark: '-'}];
-      }
-      return [...acc, {...emptyNode, type: 'leafNode', value: valueBefore, compareMark: '-'}];
-    }
-
-    if (_.isObject(valueBefore) && _.isObject(valueAfter)) {
-      return [...acc, {...emptyNode, type: 'node', children: buildAst(valueBefore, valueAfter)}];
-    }
-
-    if (valueBefore === valueAfter) {
-      return [...acc, {...emptyNode, type: 'leafNode', value: valueAfter, compareMark: ' '}];
-    }
-
-    if (_.has(after, currentKey) && valueBefore !== valueAfter) {
-      if (_.isObject(valueBefore)) {
-        return [...acc, 
-          {...emptyNode, type: 'sympleNode', value: valueBefore, compareMark: '-'},
-          {...emptyNode, type: 'leafNode', value: valueAfter, compareMark: '+'}
-        ];
-      }
-      if (_.isObject(valueAfter)) {
-        return [...acc, 
-          {...emptyNode, type: 'leafNode', value: valueBefore, compareMark: '-'},
-          {...emptyNode, type: 'sympleNode', value: valueAfter, compareMark: '+'}
-        ];
-      }
-      return [...acc, 
-                {...emptyNode, type: 'leafNode', value: valueBefore, compareMark: '-'},
-                {...emptyNode, type: 'leafNode', value: valueAfter, compareMark: '+'}
-              ];
-      };
+    const getTypesAction = (before, after) => typesActions.find(({ check }) => check(before, after));
+    return getTypesAction(before, after).build;
   }
-  return allKeys.reduce(iterAst, []);
+  return allKeys.map(iterAst);
 }
 
 export default buildAst;
