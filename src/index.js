@@ -16,7 +16,6 @@ const gendiff = (pathToFileBefore, pathToFileAfter) => {
   const before = parse(contentBefore, extFileBefore);
   const after = parse(contentAfter, extFileAfter);
 
-  console.log((buildAst(before, after)));
   return stringify(buildAst(before, after));
 };
 
