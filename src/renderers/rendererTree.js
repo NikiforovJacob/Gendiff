@@ -3,15 +3,13 @@ import _ from 'lodash';
 const newLine = '\n';
 
 const stringifyNode = (value, depth) => {
-  if (_.isObject(value)) {
-    const spaces = ' '.repeat(depth * 2);
-    const gen = Object.keys(value).map((key => {
-      // if (_.isObject(value[key])) return stringifyNode(value[key], depth + 2);
-      return `${spaces}    ${key}: ${value[key]}${newLine}`;
-    }));
-    return `{${newLine}${gen.join('').slice(0, -1)}${newLine}${spaces}}`;
-  }
-  return value;
+  if (!_.isObject(value)) return value;
+  const spaces = ' '.repeat(depth * 2);
+  const gen = Object.keys(value).map((key => {
+    // if (_.isObject(value[key])) return stringifyNode(value[key], depth + 2);
+    return `${spaces}    ${key}: ${value[key]}${newLine}`;
+  }));
+  return `{${newLine}${gen.join('').slice(0, -1)}${newLine}${spaces}}`;
 };
 
 const typeRender = 

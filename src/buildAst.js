@@ -5,6 +5,11 @@ const buildAst = (before, after) => {
 
   const typesActions = [
     {
+      type: 'nesting',
+      check: (b, a, key) => _.isObject(b[key]) && _.isObject(a[key]),
+      build:  (before, after, key) => ({type: 'nesting', children: buildAst(before[key], after[key])}),
+    },
+    {
       type: 'added',
       check: (b, a, key) => !_.has(b, key) && _.has(a, key),
       build:  (before, after, key) => ({type: 'added', valueAfter: after[key]})
@@ -14,14 +19,6 @@ const buildAst = (before, after) => {
       check: (b, a, key) => _.has(b, key) && !_.has(a, key),
       build:  (before, after, key) => ({type: 'deleted', valueBefore: before[key]})
     },
-    // 
-    // Не понимаю почему не работает
-    // 
-    // {
-    //   type: 'nesting',
-    //   check: (b, a) => _.isObject(b[key]) && _.isObject(a[key]),
-    //   build:  (before, after, key) => {type: 'nesting', children: buildAst(before[key], after[key])},
-    // },
     {
       type: 'unchanged',
       check: (b, a, key) => b[key] === a[key],
@@ -35,10 +32,7 @@ const buildAst = (before, after) => {
   ];
 
   const iterAst = (key) => {
-    const emptyNode = {name: key, type: '', valueBefore: '', valueAfter: '',  children: []};
-    if (_.isObject(before[key]) && _.isObject(after[key])) {
-      return {...emptyNode, type: 'nesting', children: buildAst(before[key], after[key])};
-    };
+    const emptyNode = {name: key};
     const getTypesAction = (before, after) => typesActions.find(({ check }) => check(before, after, key));
     const result = getTypesAction(before, after).build(before, after, key);
     return {...emptyNode, ...result};
