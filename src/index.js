@@ -3,11 +3,11 @@ import parse from './parsers';
 import fs from 'fs';
 import path from 'path';
 import buildAst from './buildAst';
-import stringify from './renderer';
+import render from './renderers';
 
 const readFile = pathFile => fs.readFileSync(pathFile, { encoding: 'utf-8' });
 
-const gendiff = (pathToFileBefore, pathToFileAfter) => {
+const gendiff = (pathToFileBefore, pathToFileAfter, format) => {
 
   const contentBefore = readFile(pathToFileBefore);
   const contentAfter = readFile(pathToFileAfter);
@@ -16,7 +16,8 @@ const gendiff = (pathToFileBefore, pathToFileAfter) => {
   const before = parse(contentBefore, extFileBefore);
   const after = parse(contentAfter, extFileAfter);
 
-  return stringify(buildAst(before, after));
+  const ast = (buildAst(before, after));
+  return render(ast, format);
 };
 
 export default gendiff;

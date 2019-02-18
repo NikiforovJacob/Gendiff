@@ -8,4 +8,4 @@ const fileExtionActions =
     '.ini': ini.parse,
   };
 
-export default (fileContent, ext) => fileExtionActions[ext](fileContent);
+export default (content, ext) => fileExtionActions[ext](content);
