@@ -14,6 +14,10 @@
       + setting4: blah blah
       + setting5: {
             key5: value5
+            rrr: {
+                key77: value88
+                ke4: value3
+            }
         }
     }
     group1: {

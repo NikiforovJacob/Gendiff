@@ -6,7 +6,7 @@ const stringifyNode = (value, depth) => {
   if (!_.isObject(value)) return value;
   const spaces = ' '.repeat(depth * 2);
   const gen = Object.keys(value).map((key => {
-    // if (_.isObject(value[key])) return stringifyNode(value[key], depth + 2);
+    if (_.isObject(value[key])) return `${spaces}    ${key}: ${stringifyNode(value[key], depth + 2)}${newLine}`;
     return `${spaces}    ${key}: ${value[key]}${newLine}`;
   }));
   return `{${newLine}${gen.join('').slice(0, -1)}${newLine}${spaces}}`;

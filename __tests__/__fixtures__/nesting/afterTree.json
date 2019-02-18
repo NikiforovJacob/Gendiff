@@ -7,7 +7,11 @@
       "key": "value"
     },
     "setting5": {
-      "key5": "value5"
+      "key5": "value5",
+      "rrr": {
+        "key77": "value88",
+        "ke4": "value3"
+      }
     },
     "setting6": {
       "key": "value",
