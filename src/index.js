@@ -15,8 +15,10 @@ const gendiff = (pathToFileBefore, pathToFileAfter, format) => {
   const extFileAfter = path.extname(pathToFileAfter);
   const before = parse(contentBefore, extFileBefore);
   const after = parse(contentAfter, extFileAfter);
-
+  console.log(before);
+  console.log(after);
   const ast = (buildAst(before, after));
+  console.log(ast);
   return render(ast, format);
 };
 

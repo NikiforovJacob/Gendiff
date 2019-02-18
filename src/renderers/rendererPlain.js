@@ -2,7 +2,8 @@ import _ from 'lodash';
 
 const stringify = (value) => {
   if (_.isObject(value)) return '[complex value]';
-  return !Number.isInteger(value) || typeof value === 'boolean' ? `'${value}'` : value;
+  if (typeof value === 'string' && `${Number(value)}` === value) return Number(value);
+  return Number.isInteger(value) || typeof value === 'boolean' ? value : `'${value}'`;
 };
 const div = nameNest => nameNest.length > 0 ? '.' : '';
 
