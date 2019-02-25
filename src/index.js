@@ -1,14 +1,12 @@
-import _ from 'lodash';
-import parse from './parsers';
 import fs from 'fs';
 import path from 'path';
+import parse from './parsers';
 import buildAst from './buildAst';
 import render from './renderers';
 
 const readFile = pathFile => fs.readFileSync(pathFile, { encoding: 'utf-8' });
 
 const gendiff = (pathToFileBefore, pathToFileAfter, format) => {
-
   const contentBefore = readFile(pathToFileBefore);
   const contentAfter = readFile(pathToFileAfter);
   const extFileBefore = path.extname(pathToFileBefore);
