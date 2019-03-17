@@ -11,12 +11,15 @@ Find difference in config files.
 ## Install
 `npm i -g diff-calc-888`
 
-## Examples implementation
-Example comparison with the original structure result `gendiff ...`
+## Examples of execution
+Example comparison with the original structure result 
+`gendiff ...`
 [![asciicast](https://asciinema.org/a/ph7x5OFuNP0FUl7mTmzwRNtXl.svg)](https://asciinema.org/a/ph7x5OFuNP0FUl7mTmzwRNtXl)
 
-Example comparison with plain result `gendiff --format plain ...`
+Example comparison with plain result 
+`gendiff --format plain ...`
 [![asciicast](https://asciinema.org/a/efS8ZaROgwpfRs27t4ahdGOL9.svg)](https://asciinema.org/a/efS8ZaROgwpfRs27t4ahdGOL9)
 
-Example comparison with json result `gendiff --format json ...`
+Example comparison with json result 
+`gendiff --format json ...`
 [![asciicast](https://asciinema.org/a/AWI0KxdzTEJzEjoOG0yaP5CRN.svg)](https://asciinema.org/a/AWI0KxdzTEJzEjoOG0yaP5CRN)
