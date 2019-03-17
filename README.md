@@ -10,26 +10,14 @@ Find difference in config files.
 
 # Install
 
-npm i -g nikita_ivochkin_project_2
+'npm i -g diff-calc-888'
 
 
-step 1
-[![asciicast](https://asciinema.org/a/P6TA9N8PXK4NHA8y6bKyCC1G1.svg)](https://asciinema.org/a/P6TA9N8PXK4NHA8y6bKyCC1G1)
-
-step 2
-[![asciicast](https://asciinema.org/a/LxGaM86NXUxv05OnEZ5JdbVgB.svg)](https://asciinema.org/a/LxGaM86NXUxv05OnEZ5JdbVgB)
-
-step 3
-[![asciicast](https://asciinema.org/a/1NYaMQXGSJqsV4aPuD75xucya.svg)](https://asciinema.org/a/1NYaMQXGSJqsV4aPuD75xucya)
-
-step 4
-[![asciicast](https://asciinema.org/a/saWfW4j9arcd9n35yg4FSywo1.svg)](https://asciinema.org/a/saWfW4j9arcd9n35yg4FSywo1)
-
-step 5
+Example comparison with the original structure result 'gendiff ...'
 [![asciicast](https://asciinema.org/a/ph7x5OFuNP0FUl7mTmzwRNtXl.svg)](https://asciinema.org/a/ph7x5OFuNP0FUl7mTmzwRNtXl)
 
-step 6
+Example comparison with plain result 'gendiff --format plain ...'
 [![asciicast](https://asciinema.org/a/efS8ZaROgwpfRs27t4ahdGOL9.svg)](https://asciinema.org/a/efS8ZaROgwpfRs27t4ahdGOL9)
 
-step 7
+Example comparison with json result 'gendiff --format json ...'
 [![asciicast](https://asciinema.org/a/AWI0KxdzTEJzEjoOG0yaP5CRN.svg)](https://asciinema.org/a/AWI0KxdzTEJzEjoOG0yaP5CRN)
