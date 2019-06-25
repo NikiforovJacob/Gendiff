@@ -1,6 +1,6 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/d4115bb5f1dda4d1357e/maintainability)](https://codeclimate.com/github/NikiforovJacob/project-lvl2-s413/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/d4115bb5f1dda4d1357e/test_coverage)](https://codeclimate.com/github/NikiforovJacob/project-lvl2-s413/test_coverage)
-[![Build Status](https://travis-ci.org/NikiforovJacob/project-lvl2-s413.svg?branch=master)](https://travis-ci.org/NikiforovJacob/project-lvl2-s413)
+[![Build Status](https://travis-ci.org/NikiforovJacob/Gendiff.svg?branch=master)](https://travis-ci.org/NikiforovJacob/Gendiff)
 
 # gendiff
 Find difference in config files.
