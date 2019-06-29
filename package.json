@@ -20,7 +20,12 @@
   },
   "keywords": [
     "config",
-    "difference"
+    "difference",
+    "cli",
+    "diff",
+    "ini",
+    "yml",
+    "json"
   ],
   "author": "Nikiforov_Jacob",
   "license": "ISC",
