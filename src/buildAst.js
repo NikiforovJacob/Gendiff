@@ -1,5 +1,19 @@
 import _ from 'lodash';
 
+const mapNums = (value) => {
+  if (_.isObject(value)) {
+    return Object.keys(value).reduce((acc, key) => {
+      const num = parseInt(value[key], 10);
+      // eslint-disable-next-line eqeqeq
+      const newValue = (num == value[key] ? num : value[key]);
+      return { ...acc, [key]: newValue };
+    }, {});
+  }
+  const num = parseInt(value, 10);
+  // eslint-disable-next-line eqeqeq
+  return num == value ? num : value;
+};
+
 const typesDiffs = [
   {
     check: (b, a, key) => _.isObject(b[key]) && _.isObject(a[key]),
@@ -7,19 +21,19 @@ const typesDiffs = [
   },
   {
     check: (b, a, key) => !_.has(b, key) && _.has(a, key),
-    build: (b, a) => ({ type: 'added', valueAfter: a }),
+    build: (b, a) => ({ type: 'added', valueAfter: mapNums(a) }),
   },
   {
     check: (b, a, key) => _.has(b, key) && !_.has(a, key),
-    build: b => ({ type: 'deleted', valueBefore: b }),
+    build: b => ({ type: 'deleted', valueBefore: mapNums(b) }),
   },
   {
     check: (b, a, key) => b[key] === a[key],
-    build: b => ({ type: 'unchanged', valueBefore: b }),
+    build: b => ({ type: 'unchanged', valueBefore: mapNums(b) }),
   },
   {
     check: (b, a, key) => b[key] !== a[key],
-    build: (b, a) => ({ type: 'changed', valueBefore: b, valueAfter: a }),
+    build: (b, a) => ({ type: 'changed', valueBefore: mapNums(b), valueAfter: mapNums(a) }),
   },
 ];
 
